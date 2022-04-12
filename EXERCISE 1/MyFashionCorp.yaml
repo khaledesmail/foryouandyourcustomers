@@ -1,0 +1,435 @@
+swagger: "2.0"
+info:
+  description: "foryouandyourcustomers"
+  version: "1.0.0"
+  title: "MyFashionCorp"
+host: "localhost:3000"
+basePath: "/rest/api/v1"
+schemes:
+- "http"
+paths:
+  "/cart/{userId}":
+    post:
+      tags:
+      - "Cart"
+      summary: "Add product into cart"
+      description: "This api to add a product in the cart."
+      operationId: "addProductPost"
+      produces:
+      - "application/json"
+      parameters:
+      - in: path
+        name: userId
+        type: string
+        required: true
+      - in: body
+        name: body
+        description: required body of request.
+        required: true
+        schema:
+          $ref: '#/definitions/addProduct'
+      responses:
+        '200':
+          description: successful operation
+          schema:
+              $ref: '#/definitions/addproductResponse'
+        '400':
+          description: Bad request.
+          schema:
+              $ref: '#/definitions/Error'
+        '401':
+          description: Authorization information is missing or invalid.
+          schema:
+              $ref: '#/definitions/Error'
+        '404':
+         description: Data was not found.
+         schema:
+              $ref: '#/definitions/Error'
+        '422':
+         description: Unprocessable entity.
+         schema:
+              $ref: '#/definitions/Error'
+    get:
+      tags:
+      - "Cart"
+      summary: "Get products in cart for the user"
+      description: "This api to get products in cart for the user"
+      operationId: "getProduct"
+      produces:
+      - "application/json"
+      parameters:
+      - in: path
+        name: userId
+        type: string
+        required: true
+      responses:
+        '200':
+          description: successful operation
+          schema:
+              $ref: '#/definitions/getProductsResponse'
+        '400':
+          description: Bad request.
+          schema:
+              $ref: '#/definitions/Error'
+        '401':
+          description: Authorization information is missing or invalid.
+          schema:
+              $ref: '#/definitions/Error'
+        '404':
+         description: Data was not found.
+         schema:
+              $ref: '#/definitions/Error'
+        '422':
+         description: Unprocessable entity.
+         schema:
+              $ref: '#/definitions/Error'
+    put:
+      tags:
+      - "Cart"
+      summary: "Update product in cart"
+      description: "This api to update a product in the cart."
+      operationId: "updateProductPost"
+      produces:
+      - "application/json"
+      parameters:
+      - in: path
+        name: userId
+        type: string
+        required: true
+      - in: body
+        name: body
+        description: required body of request.
+        required: true
+        schema:
+          $ref: '#/definitions/updateProduct'
+      responses:
+        '200':
+          description: successful operation
+          schema:
+              $ref: '#/definitions/updateproductResponse'
+        '400':
+          description: Bad request.
+          schema:
+              $ref: '#/definitions/Error'
+        '401':
+          description: Authorization information is missing or invalid.
+          schema:
+              $ref: '#/definitions/Error'
+        '404':
+         description: Data was not found.
+         schema:
+              $ref: '#/definitions/Error'
+        '422':
+         description: Unprocessable entity.
+         schema:
+              $ref: '#/definitions/Error'
+    delete:
+      tags:
+      - "Cart"
+      summary: "Delete the product from cart"
+      description: "This api to delete a product from the cart."
+      operationId: "deleteProductPost"
+      produces:
+      - "application/json"
+      parameters:
+      - in: path
+        name: userId
+        type: string
+        required: true
+      - in: body
+        name: body
+        description: required body of request.
+        required: true
+        schema:
+          $ref: '#/definitions/deleteProduct'
+      responses:
+        '200':
+          description: successful operation
+          schema:
+              $ref: '#/definitions/deleteproductResponse'
+        '400':
+          description: Bad request.
+          schema:
+              $ref: '#/definitions/Error'
+        '401':
+          description: Authorization information is missing or invalid.
+          schema:
+              $ref: '#/definitions/Error'
+        '404':
+         description: Data was not found.
+         schema:
+              $ref: '#/definitions/Error'
+        '422':
+         description: Unprocessable entity.
+         schema:
+              $ref: '#/definitions/Error'
+  "/cart/discount/{userId}":
+    post:
+      tags:
+      - "Discount"
+      summary: "Apply discount to order"
+      description: "This api to apply discount"
+      operationId: "applydiscount"
+      produces:
+      - "application/json"
+      parameters:
+      - in: path
+        name: userId
+        type: string
+        required: true
+      - in: body
+        name: body
+        description: required body of request.
+        required: true
+        schema:
+          $ref: '#/definitions/applydiscount'
+      responses:
+        '200':
+          description: successful operation
+          schema:
+              $ref: '#/definitions/discountResponse'
+        '400':
+          description: Bad request.
+          schema:
+              $ref: '#/definitions/Error'
+        '401':
+          description: Authorization information is missing or invalid.
+          schema:
+              $ref: '#/definitions/Error'
+        '404':
+         description: Data was not found.
+         schema:
+              $ref: '#/definitions/Error'
+        '422':
+         description: Unprocessable entity.
+         schema:
+              $ref: '#/definitions/Error'
+  "/search":
+    get:
+      tags:
+      - "Search"
+      summary: "Search for a product"
+      description: "This api to search for a product"
+      operationId: "searchForProduct"
+      produces:
+      - "application/json"
+      parameters:
+      - in: query
+        name: name
+        type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+              $ref: '#/definitions/searchProductsResponse'
+        '400':
+          description: Bad request.
+          schema:
+              $ref: '#/definitions/Error'
+        '401':
+          description: Authorization information is missing or invalid.
+          schema:
+              $ref: '#/definitions/Error'
+        '404':
+         description: Data was not found.
+         schema:
+              $ref: '#/definitions/Error'
+        '422':
+         description: Unprocessable entity.
+         schema:
+              $ref: '#/definitions/Error'
+  "/cart/statictext":
+    get:
+      tags:
+      - "Static Text"
+      summary: "Get static text for cart"
+      description: "This api to get static text"
+      operationId: "statictext"
+      produces:
+      - "application/json"
+      parameters:
+      - in: query
+        name: name
+        type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+              $ref: '#/definitions/getStaticTextResponse'
+        '400':
+          description: Bad request.
+          schema:
+              $ref: '#/definitions/Error'
+        '401':
+          description: Authorization information is missing or invalid.
+          schema:
+              $ref: '#/definitions/Error'
+        '404':
+         description: Data was not found.
+         schema:
+              $ref: '#/definitions/Error'
+        '422':
+         description: Unprocessable entity.
+         schema:
+              $ref: '#/definitions/Error'
+  "/order/{userId}":
+    post:
+      tags:
+      - "Order"
+      summary: "Create an order for the user"
+      description: "This api to create an order for the user"
+      operationId: "addOrderPost"
+      produces:
+      - "application/json"
+      parameters:
+      - in: path
+        name: userId
+        type: string
+        required: true
+      - in: body
+        name: body
+        description: required body of request.
+        required: true
+        schema:
+          $ref: '#/definitions/addOrder'
+      responses:
+        '200':
+          description: successful operation
+          schema:
+              $ref: '#/definitions/addOrderResponse'
+        '400':
+          description: Bad request.
+          schema:
+              $ref: '#/definitions/Error'
+        '401':
+          description: Authorization information is missing or invalid.
+          schema:
+              $ref: '#/definitions/Error'
+        '404':
+         description: Data was not found.
+         schema:
+              $ref: '#/definitions/Error'
+        '422':
+         description: Unprocessable entity.
+         schema:
+              $ref: '#/definitions/Error'
+definitions:
+  addProduct:
+    type: "object"
+    properties:
+      productId:
+       type: "string"
+      quantity:
+       type: "string"
+  addproductResponse:
+    type: "object"
+  getProductsResponse:
+        type: array
+        items:
+         type: object
+         properties:
+          productName:
+           type: string
+           example: "T-shirt"
+          productId:
+           type: string
+           example: 420355
+          quantity:
+           type: number
+           example: 1
+          size:
+           type: string
+           example: M
+          price: 
+            type: number
+            example: 29.99
+          status:
+            type: string
+            example: sale
+          inStock:
+            type: boolean
+  updateProduct:
+    type: "object"
+    properties:
+      productId:
+       type: "string"
+      quantity:
+       type: "string"
+  updateproductResponse:
+    type: "object"
+  deleteProduct:
+    type: "object"
+    properties:
+      productId:
+       type: "string"
+  deleteproductResponse:
+    type: "object"
+  searchProductsResponse:
+        type: array
+        items:
+         type: object
+         properties:
+          productName:
+           type: string
+           example: "T-shirt"
+          productId:
+           type: string
+           example: 420355
+          price: 
+            type: number
+            example: 29.99
+          status:
+            type: string
+            example: sale
+          inStock:
+            type: boolean
+  getStaticTextResponse:
+         type: object
+         properties:
+          saving:
+           type: object
+           properties:
+            text:
+             type: string
+          delivery:
+            type: object
+            properties:
+             text:
+              type: string
+          returns:
+           type: object
+           properties:
+            text:
+             type: string
+  applydiscount:
+    type: "object"
+    properties:
+      discountCode:
+       type: "string"
+  discountResponse:
+    type: "object"
+    properties:
+      subtotal:
+       type: number
+      discountValue:
+       type: number
+      total:
+       type: number
+  addOrder:
+    type: "object"
+    properties:
+      discountCode:
+       type: "string"
+  addOrderResponse:
+    type: "object"
+  Error:
+    type: "object"
+    properties:
+      success:
+       type: "boolean"
+       example: false
+      message:
+       type: "string"
+       example: ""
+      data:
+       type: "object"
