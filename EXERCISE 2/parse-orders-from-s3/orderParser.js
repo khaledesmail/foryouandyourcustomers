@@ -11,10 +11,10 @@ const s3 = new aws.S3({ apiVersion: "2006-03-01", region: "eu-central-1" });
  */
 
 const coulmnFileOrder = [
-  { name: "orderId", offset: 0 },
-  { name: "orderDate", offset: 1 },
-  { name: "userEmail", offset: 2 },
-  { name: "products", offset: 3 },
+  { name: "orderId", offset: Number(process.env.ORDERID_OFFSET) || 0 },
+  { name: "orderDate", offset: Number(process.env.ORDERDATE_OFFSET) || 1 },
+  { name: "userEmail", offset: Number(process.env.USER_EMAIL_OFFSET) || 2 },
+  { name: "products", offset: Number(process.env.PRODUCTS_OFFSET) || 3 },
 ];
 
 exports.parsingOrders = async (params) => {
@@ -41,7 +41,7 @@ exports.parsingOrders = async (params) => {
 
 /**
  * @param object orderRow
- * returns object order
+ * returns object parsedObject
  */
 
 async function _parsingObject(orderRow) {
